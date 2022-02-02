@@ -31,6 +31,10 @@ public class PlayerController : MonoBehaviour
         // if(currentTime.Millisecond > 0.0f && Input.GetKeyUp(KeyCode.LeftControl)) {
         //     SpawnBall();            
         // }
+        if(Input.GetKeyDown(KeyCode.LeftControl)) {
+            SpawnBall();
+        }
+
     }
 
     private void SpawnBall() {
@@ -46,10 +50,10 @@ public class PlayerController : MonoBehaviour
             ballPrefab.transform.rotation
         );
 
-        // calculate random torque
-        Vector3 torque = newBall.transform.right * UnityEngine.Random.Range(-maxTorque, maxTorque);
+        // // calculate random torque
+        // Vector3 torque = newBall.transform.right * UnityEngine.Random.Range(-maxTorque, maxTorque);
 
-        newBall.GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, launchForce, 0.0f), ForceMode.Impulse);
-        newBall.GetComponent<Rigidbody>().AddTorque(torque, ForceMode.Impulse);
+        // newBall.GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, launchForce, 0.0f), ForceMode.Impulse);
+        // newBall.GetComponent<Rigidbody>().AddTorque(torque, ForceMode.Impulse);
     }
 }
