@@ -9,6 +9,7 @@ public class Plunger : MonoBehaviour
     private float powerRate;
     public float minPower = 0.0f;
     public float maxPower = 100.0f;
+    public float maxTorque = 1.0f;
     public Slider powerSlider;
 
     private bool ballReady = false;
@@ -51,7 +52,8 @@ public class Plunger : MonoBehaviour
             {
                 foreach (Rigidbody r in ballList)
                 {
-                    r.AddForce(power * Vector3.up);
+                    r.AddForce(power * Vector3.up, ForceMode.Impulse);
+                    r.AddTorque(r.transform.right * Random.Range(-maxTorque, maxTorque), ForceMode.Impulse);
                 }
                 ballReady = false;
                 power = minPower;

@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject ballPrefab;
     
     [SerializeField] private GameObject ballSpawn;
+    [SerializeField] private LaunchArea launchArea;
     private System.DateTime currentTime;
 
     // Start is called before the first frame update
@@ -31,7 +32,9 @@ public class PlayerController : MonoBehaviour
         // if(currentTime.Millisecond > 0.0f && Input.GetKeyUp(KeyCode.LeftControl)) {
         //     SpawnBall();            
         // }
-        if(Input.GetKeyDown(KeyCode.LeftControl)) {
+        if(Input.GetKeyDown(KeyCode.LeftControl)
+            && launchArea.isLaunchAreaClear()
+            ) {
             SpawnBall();
         }
 
