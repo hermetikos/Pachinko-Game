@@ -2,26 +2,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Counter : MonoBehaviour
 {
-    public int points = 1;
+    public int multiplier = 1;
 
-    private int Count = 0;
+    
+    public delegate void ScoreAction(int ballCount);
+    public static event ScoreAction UpdateBallCount;
 
-    private void Start()
-    {
-        Count = 0;
+
+    private void Update() {
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Ball"))
         {
-            Count += points;
-            Debug.Log("Count : " + Count);
+            // Count += multiplier;
+            // Debug.Log("Count : " + Count);
+            // GameManager.ModifyScore(multiplier);
+            if(UpdateBallCount != null)
+            {
+                UpdateBallCount(multiplier);
+            }
         }
-        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Ball"))
+        {
+            // Count += multiplier;
+            // Debug.Log("Count : " + Count);
+            if(UpdateBallCount != null)
+            {
+                UpdateBallCount(-multiplier);
+            }
+        }
     }
 }

@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 2169981037452360022}
   m_Layer: 0
   m_Name: Nest Collider
-  m_TagString: Untagged
+  m_TagString: Nest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23ac8d9e0f1d21044ab42710ee10b3ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: 3
+  multiplier: 3
 --- !u!1 &2147614012859845940
 GameObject:
   m_ObjectHideFlags: 0

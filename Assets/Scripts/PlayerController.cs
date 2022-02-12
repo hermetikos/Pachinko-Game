@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxHoldTime = 2.0f;
     
     [SerializeField] private float maxLaunchForce = 60.0f;
-    [SerializeField] private float maxTorque = 0.1f;
 
     [SerializeField] private GameObject ballPrefab;
     
