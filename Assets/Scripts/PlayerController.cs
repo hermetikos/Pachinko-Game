@@ -12,10 +12,16 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField] private float maxLaunchForce = 60.0f;
 
+
     [SerializeField] private GameObject ballPrefab;
     
     [SerializeField] private GameObject ballSpawn;
     [SerializeField] private LaunchArea launchArea;
+    [SerializeField] private float cameraSpeed = 10.0f;
+    private CameraController cameraController;
+
+
+    private GameObject newestBall;
 
     private System.DateTime currentTime;
     private bool gameOver = false;
@@ -30,38 +36,29 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        cameraController = Camera.main.GetComponent<CameraController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if(Input.GetKeyDown(KeyCode.LeftControl)) {
-        //     currentTime = System.DateTime.Now;
-        // }
-
-        // if(currentTime.Millisecond > 0.0f && Input.GetKeyUp(KeyCode.LeftControl)) {
-        //     SpawnBall();            
-        // }
         if(!gameOver)
         {
             if(Input.GetKeyDown(KeyCode.LeftControl)
                 && launchArea.isLaunchAreaClear()
                 ) {
+                // first unset the active ball
+                cameraController.UnsetFocus();
+                // then spawn a new one
                 SpawnBall();
             }
         }
-
     }
 
     private void SpawnBall() {
-        // calculate launch force
-        float holdTime = (System.DateTime.Now - currentTime).Milliseconds;
-        holdTime = Mathf.Clamp(holdTime / 1000, 0.0f, maxHoldTime);
-        float launchForce = (holdTime / maxHoldTime) * maxLaunchForce;
         
         // spawn a new ball and apply a force and torque
-        GameObject newBall = Instantiate(
+        newestBall = Instantiate(
             ballPrefab,
             ballSpawn.transform.position,
             ballPrefab.transform.rotation
@@ -70,15 +67,13 @@ public class PlayerController : MonoBehaviour
         {
             UpdateBallCount(-1);
         }
-        // // calculate random torque
-        // Vector3 torque = newBall.transform.right * UnityEngine.Random.Range(-maxTorque, maxTorque);
 
-        // newBall.GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, launchForce, 0.0f), ForceMode.Impulse);
-        // newBall.GetComponent<Rigidbody>().AddTorque(torque, ForceMode.Impulse);
+        cameraController.SetFocus(newestBall);
     }
 
     private void GameOver()
     {
         gameOver = true;
     }
+
 }

@@ -1097,6 +1097,7 @@ MonoBehaviour:
   ballPrefab: {fileID: 1574849673252539500, guid: ff86f26b9dff6c54382310bde98631e2, type: 3}
   ballSpawn: {fileID: 2055520486}
   launchArea: {fileID: 1114749041}
+  cameraSpeed: 10
 --- !u!4 &704370019
 Transform:
   m_ObjectHideFlags: 0
@@ -1595,6 +1596,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1667,6 +1669,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb76cb293158d7489f86dd051d987be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yBound: 2
 --- !u!1 &1009664454
 GameObject:
   m_ObjectHideFlags: 0
