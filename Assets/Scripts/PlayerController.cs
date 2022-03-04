@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField] private GameObject ballSpawn;
     [SerializeField] private LaunchArea launchArea;
+    [SerializeField] private GameManager gameManager;
+
     [SerializeField] private float cameraSpeed = 10.0f;
     private CameraController cameraController;
 
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         cameraController = Camera.main.GetComponent<CameraController>();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -46,6 +49,7 @@ public class PlayerController : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.LeftControl)
                 && launchArea.isLaunchAreaClear()
+                && gameManager.GetBallCount() > 0
                 ) {
                 // first unset the active ball
                 cameraController.UnsetFocus();
