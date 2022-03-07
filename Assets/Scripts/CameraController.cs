@@ -20,7 +20,9 @@ public class CameraController : MonoBehaviour
 
         // follow the ball
         if(focus != null
-            && !Input.GetKey(KeyCode.LeftShift))
+            && !Input.GetKey(KeyCode.LeftShift)
+            && !Input.GetKey(KeyCode.LeftAlt)
+            )
         {
             float dy = focus.position.y - transform.position.y;
             if(dy < -yBound || dy > yBound)
@@ -39,6 +41,7 @@ public class CameraController : MonoBehaviour
         // manual control when left shift is held
         else if(Input.GetKey(KeyCode.LeftShift))
         {
+            UnsetFocus();
             if(Input.GetKey(KeyCode.UpArrow))
             {
                 delta = Vector3.up * manualMoveSpeed;
@@ -46,6 +49,21 @@ public class CameraController : MonoBehaviour
             else if (Input.GetKey(KeyCode.DownArrow))
             {
                 delta = -Vector3.up * manualMoveSpeed;
+            }
+
+            delta *= Time.deltaTime;
+        }
+        // allow the player to move the camera in and out
+        else if(Input.GetKey(KeyCode.LeftAlt))
+        {
+            UnsetFocus();
+            if(Input.GetKey(KeyCode.UpArrow))
+            {
+                delta = Vector3.forward * manualMoveSpeed;
+            }
+            else if (Input.GetKey(KeyCode.DownArrow))
+            {
+                delta = -Vector3.forward * manualMoveSpeed;
             }
 
             delta *= Time.deltaTime;
